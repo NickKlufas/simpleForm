@@ -36,3 +36,7 @@
 .btn {
     margin-right: 5px;
 }
+
+.toast {
+  max-width: none !important
+}
