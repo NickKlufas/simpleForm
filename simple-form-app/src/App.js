@@ -115,7 +115,7 @@ class App extends React.Component {
                             name="firstName"
                             id="firstName"
                             placeholder=""
-                            // required
+                            required
                           />
                         </FormGroup>
                       </Col>
@@ -127,7 +127,7 @@ class App extends React.Component {
                             name="lastName"
                             id="lastName"
                             placeholder=""
-                            // required
+                            required
                           />
                         </FormGroup>
                       </Col>
@@ -139,7 +139,7 @@ class App extends React.Component {
                             name="email"
                             id="exampleEmail"
                             placeholder=""
-                            // required
+                            required
                           />
                         </FormGroup>
                       </Col>
@@ -152,7 +152,7 @@ class App extends React.Component {
                             id="phoneNumber"
                             placeholder="123-456-7890"
                             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                            // required
+                            required
                           />
                         </FormGroup>
                       </Col>
@@ -164,7 +164,7 @@ class App extends React.Component {
                             name="userName"
                             id="userName"
                             placeholder=""
-                            // required
+                            required
                           />
                         </FormGroup>
                       </Col>
@@ -176,7 +176,7 @@ class App extends React.Component {
                             name="address"
                             id="exampleAddress"
                             placeholder=""
-                            // required
+                            required
                           />
                         </FormGroup>
                       </Col>
@@ -198,7 +198,7 @@ class App extends React.Component {
                             type="text"
                             name="city"
                             id="city"
-                            // required
+                            required
                           />
                         </FormGroup>
                       </Col>
@@ -209,7 +209,7 @@ class App extends React.Component {
                             type="text"
                             name="state"
                             id="state"
-                            // required
+                            required
                           />
                         </FormGroup>
                       </Col>
@@ -220,7 +220,7 @@ class App extends React.Component {
                             type="text"
                             name="zip"
                             id="zip"
-                            // required
+                            required
                           />
                         </FormGroup>
                       </Col>
