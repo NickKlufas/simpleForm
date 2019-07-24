@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+
 import {
   Col,
   Row,
@@ -11,21 +12,31 @@ import {
   ToastHeader,
   ToastBody,
   Card,
-  CardImg,
-  CardText,
   CardBody,
-  CardTitle,
-  CardSubtitle
+  CardTitle
 } from "reactstrap";
 
-export default class Example extends React.Component {
+import { connect } from 'react-redux'
+import { submitForm } from './actions/form-actions';
+import { bindActionCreators } from 'redux';
+
+class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.onSubmitForm = this.onSubmitForm.bind(this);
+
     this.state = {
       nextRequestWillSucceed: true,
       showSuccessToast: false,
       showFailureToast: false
     };
+  }
+
+  onSubmitForm (event) {
+      event.preventDefault();
+      console.log(new FormData(event.target).get('firstName'));
+      this.props.onSubmitForm([{"name" : "nickfff"}]);
   }
 
   handleCancel = () => {
@@ -85,6 +96,7 @@ export default class Example extends React.Component {
     });
   }
 
+
   render() {
     return (
       <div className="container">
@@ -93,137 +105,135 @@ export default class Example extends React.Component {
             <Card>
               <CardBody>
                 <CardTitle>Please give me your information.</CardTitle>
-                  <CardText>
-                    <Form id="userForm" onSubmit={this.handleSubmit}>
-                      <Row form>
-                        <Col md={6}>
-                          <FormGroup>
-                            <Label for="firstName">First Name*</Label>
-                            <Input
-                              type="text"
-                              name="firstName"
-                              id="firstName"
-                              placeholder=""
-                              // required
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col md={6}>
-                          <FormGroup>
-                            <Label for="lastName">Last Name*</Label>
-                            <Input
-                              type="text"
-                              name="lastName"
-                              id="lastName"
-                              placeholder=""
-                              // required
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col md={12}>
-                          <FormGroup>
-                            <Label for="exampleEmail">Email*</Label>
-                            <Input
-                              type="email"
-                              name="email"
-                              id="exampleEmail"
-                              placeholder=""
-                              // required
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col md={12}>
-                          <FormGroup>
-                            <Label for="phoneNumber">Phone Number*</Label>
-                            <Input
-                              type="tel"
-                              name="phoneNumber"
-                              id="phoneNumber"
-                              placeholder="123-456-7890"
-                              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                              // required
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col md={12}>
-                          <FormGroup>
-                            <Label for="exampleEmail">Username*</Label>
-                            <Input
-                              type="text"
-                              name="userName"
-                              id="userName"
-                              placeholder=""
-                              // required
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col md={9}>
-                          <FormGroup>
-                            <Label for="exampleAddress">Address*</Label>
-                            <Input
-                              type="text"
-                              name="address"
-                              id="exampleAddress"
-                              placeholder=""
-                              // required
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col md={3}>
-                          <FormGroup>
-                            <Label for="unitNumber">Unit Number</Label>
-                            <Input
-                              type="text"
-                              name="unitNumber"
-                              id="unitNumber"
-                              placeholder=""
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col md={6}>
-                          <FormGroup>
-                            <Label for="exampleCity">City*</Label>
-                            <Input
-                              type="text"
-                              name="city"
-                              id="city"
-                              // required
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col md={4}>
-                          <FormGroup>
-                            <Label for="exampleState">State*</Label>
-                            <Input
-                              type="text"
-                              name="state"
-                              id="state"
-                              // required
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col md={2}>
-                          <FormGroup>
-                            <Label for="exampleZip">Zip*</Label>
-                            <Input
-                              type="text"
-                              name="zip"
-                              id="zip"
-                              // required
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col xs={12}>
-                          <Button id="cancelButton" onClick={this.handleCancel}>
-                            Cancel
-                          </Button>
-                          <Button color="primary" id="submitButton" type="submit">
-                            Submit
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Form>
-                  </CardText>
+                  <Form id="userForm" onSubmit={this.onSubmitForm}>
+                    <Row form>
+                      <Col md={6}>
+                        <FormGroup>
+                          <Label for="firstName">First Name*</Label>
+                          <Input
+                            type="text"
+                            name="firstName"
+                            id="firstName"
+                            placeholder=""
+                            // required
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md={6}>
+                        <FormGroup>
+                          <Label for="lastName">Last Name*</Label>
+                          <Input
+                            type="text"
+                            name="lastName"
+                            id="lastName"
+                            placeholder=""
+                            // required
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md={12}>
+                        <FormGroup>
+                          <Label for="exampleEmail">Email*</Label>
+                          <Input
+                            type="email"
+                            name="email"
+                            id="exampleEmail"
+                            placeholder=""
+                            // required
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md={12}>
+                        <FormGroup>
+                          <Label for="phoneNumber">Phone Number*</Label>
+                          <Input
+                            type="tel"
+                            name="phoneNumber"
+                            id="phoneNumber"
+                            placeholder="123-456-7890"
+                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                            // required
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md={12}>
+                        <FormGroup>
+                          <Label for="exampleEmail">Username*</Label>
+                          <Input
+                            type="text"
+                            name="userName"
+                            id="userName"
+                            placeholder=""
+                            // required
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md={9}>
+                        <FormGroup>
+                          <Label for="exampleAddress">Address*</Label>
+                          <Input
+                            type="text"
+                            name="address"
+                            id="exampleAddress"
+                            placeholder=""
+                            // required
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md={3}>
+                        <FormGroup>
+                          <Label for="unitNumber">Unit Number</Label>
+                          <Input
+                            type="text"
+                            name="unitNumber"
+                            id="unitNumber"
+                            placeholder=""
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md={6}>
+                        <FormGroup>
+                          <Label for="exampleCity">City*</Label>
+                          <Input
+                            type="text"
+                            name="city"
+                            id="city"
+                            // required
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md={4}>
+                        <FormGroup>
+                          <Label for="exampleState">State*</Label>
+                          <Input
+                            type="text"
+                            name="state"
+                            id="state"
+                            // required
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md={2}>
+                        <FormGroup>
+                          <Label for="exampleZip">Zip*</Label>
+                          <Input
+                            type="text"
+                            name="zip"
+                            id="zip"
+                            // required
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col xs={12}>
+                        <Button id="cancelButton" onClick={this.handleCancel}>
+                          Cancel
+                        </Button>
+                        <Button color="primary" id="submitButton" type="submit">
+                          Submit
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Form>
               </CardBody>
             </Card>
           </Col>
@@ -235,7 +245,7 @@ export default class Example extends React.Component {
               </Toast>
             </div>
           </Col>
-          <Col xs="12">
+          <Col xs={12}>
             <div className="my-2 rounded bg-danger">
               <Toast isOpen={this.state.showFailureToast}>
                 <ToastHeader>It'll get better</ToastHeader>
@@ -248,3 +258,17 @@ export default class Example extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state, props) => {
+  return {
+    form: state.form    
+  }
+};
+
+const mapActionsToProps = (dispatch, props) => {
+  return bindActionCreators({
+    onSubmitForm: submitForm
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(App);
