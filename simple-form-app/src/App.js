@@ -36,7 +36,7 @@ class App extends React.Component {
   onSubmitForm (event) {
       event.preventDefault();
       console.log(new FormData(event.target).get('firstName'));
-      this.props.onSubmitForm([{"name" : "nickfff"}]);
+      this.props.onSubmitForm({"name" : "nickfff"});
   }
 
   handleCancel = () => {
@@ -259,11 +259,9 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  return {
-    form: state.form    
-  }
-};
+const mapStateToProps = state => ({
+    form: state.form
+});
 
 const mapActionsToProps = (dispatch, props) => {
   return bindActionCreators({

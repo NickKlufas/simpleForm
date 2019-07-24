@@ -1,6 +1,11 @@
 export const SUBMIT_FORM = 'submitForm'
 
-export const submitForm = form => ({
-	type: SUBMIT_FORM,
-	payload: { form }
-});
+export function submitForm(form) {
+	return {
+		type: SUBMIT_FORM,
+		payload: {
+			form: form
+		}
+	}
+}
+	

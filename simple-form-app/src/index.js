@@ -17,7 +17,7 @@ const allReducers = combineReducers({
 const store = createStore(
 	allReducers, 
 	{
-		form: [{ name: 'Nick'}]
+		form: { name: 'Nick'}
 	},
 	window.devToolsExtension && window.devToolsExtension()
 	);
